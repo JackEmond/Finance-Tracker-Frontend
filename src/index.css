@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --accent-color: #f8fafc;
+}
+
+* {
+  font-family: 'Puritan', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Puritan', sans-serif;
+  background-color: #020617;
+  background-image: radial-gradient(circle at top right, #1e293b, #020617);
+  background-attachment: fixed;
+  color: var(--accent-color);
+  min-height: 100vh;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.green {
+  color: #22c55e;
+}
+
+.red {
+  color: #ef4444;
+}

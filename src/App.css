@@ -1,0 +1,93 @@
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.header-title {
+  font-size: 1.4em;
+}
+
+/* Summary Container */
+.summary-container {
+  max-width: 1200px;
+  display: grid;
+  margin: 0 auto;
+  padding: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.stat-card {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: rgb(0, 0, 0, 0.7) 5px 10px 50px, rgb(0, 0, 0, 0.7) -5px 0px 250px;
+  background: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.net-balance-value {
+  text-align: center;
+  font-size: 2.8em;
+}
+
+.balance-change {
+  border-top: 1px solid #5b6574;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.prev-amount {
+  color: #94a3b8;
+}
+
+.white {
+  color: #f8fafc;
+}
+
+
+.table-card {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table-card tr {
+  border-bottom: 1px solid #5b6574;
+}
+
+.table-card th {
+  text-align: left;
+  padding: 10px;
+  color: #94a3b8;
+}
+
+.table-card tr:last-child {
+  border-bottom: none;
+}
+
+.table-card td {
+  padding: 10px;
+}
+
+.table-card .label {
+  color: #94a3b8;
+}
