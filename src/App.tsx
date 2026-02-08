@@ -1,6 +1,23 @@
 import "./App.css";
+import { useEffect, useState } from "react";
+
+// Define the shape of your data (C# DTO equivalent)
+interface Transaction {
+  id: number;
+  description: string;
+  amount: number;
+}
 
 function App() {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/transactions")
+      .then((res) => res.json())
+      .then((data) => setTransactions(data))
+      .catch((err) => console.error("Error fetching data:", err));
+  }, []);
+
   return (
     <>
       <header>
@@ -115,21 +132,16 @@ function App() {
               <th>Amount</th>
               <th>Type</th>
             </tr>
-            <tr>
-              <td>Grocery Store</td>
-              <td className="red">-$150.00</td>
-              <td>Expense</td>
-            </tr>
-            <tr>
-              <td>Salary Payment</td>
-              <td className="green">+$4,200.00</td>
-              <td>Income</td>
-            </tr>
-            <tr>
-              <td>Electricity Bill</td>
-              <td className="red">-$200.00</td>
-              <td>Expense</td>
-            </tr>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.description}</td>
+                <td className={transaction.amount < 0 ? "red" : "green"}>
+                  {transaction.amount < 0 ? "-" : "+"}$
+                  {Math.abs(transaction.amount).toFixed(2)}
+                </td>
+                <td>{transaction.amount < 0 ? "Expense" : "Income"}</td>
+              </tr>
+            ))}
           </table>
         </div>
       </div>
