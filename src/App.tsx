@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import BreakdownCard from "./BreakdownCard";
 
 // Define the shape of your data (C# DTO equivalent)
 interface Transaction {
@@ -17,7 +18,6 @@ function App() {
     (sum, t) => sum + Number(t.amount),
     0,
   );
-  console.log(totalIncome);
 
   const totalExpenses = negativeTransactions.reduce(
     (sum, t) => sum + Number(t.amount),
@@ -25,6 +25,7 @@ function App() {
   );
   const netBalance = Number(totalIncome) + Number(totalExpenses);
 
+  // Get current month and year for display
   useEffect(() => {
     fetch("http://localhost:5000/transactions")
       .then((res) => res.json())
@@ -41,7 +42,7 @@ function App() {
       {/* Net Balance Card */}
       <div className="summary-container">
         <div className="stat-card full-width">
-          <div className="stat-label center-text">Net Balance</div>
+          <div className="stat-label">Net Balance</div>
           <div className="net-balance-value">${netBalance}</div>
           <div className="balance-change">
             <div className="prev-amount">
@@ -75,55 +76,14 @@ function App() {
           </div>
         </div>
 
-        {/* Expense Breakdown Card */}
-        <div className="stat-card full-width">
-          <div className="stat-label center-text">Expense Breakdown</div>
-          <table className="table-card">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Previous Month</th>
-                <th>This Month</th>
-                <th>Difference</th>
-              </tr>
-            </thead>
-            <tbody>
-              {negativeTransactions.map((transaction) => (
-                <tr key={transaction.id}>
-                  <td>{transaction.category_name}</td>
-                  <td>$0.00</td>
-                  <td>${transaction.amount}</td>
-                  <td>0.0%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Income BreakdownCard */}
-        <div className="stat-card full-width">
-          <div className="stat-label center-text">Income Breakdown</div>
-          <table className="table-card">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Previous Month</th>
-                <th>This Month</th>
-                <th>Difference</th>
-              </tr>
-            </thead>
-            <tbody>
-              {positiveTransactions.map((transaction) => (
-                <tr key={transaction.id}>
-                  <td>{transaction.category_name}</td>
-                  <td>$0.00</td>
-                  <td>${transaction.amount}</td>
-                  <td>0.0%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <BreakdownCard
+          title="Expenses Breakdown"
+          transactions={negativeTransactions}
+        />
+        <BreakdownCard
+          title="Income Breakdown"
+          transactions={positiveTransactions}
+        />
 
         {/* Recent Transactions Card */}
         <div className="stat-card full-width">
