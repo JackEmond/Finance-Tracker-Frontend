@@ -6,8 +6,10 @@ function Navbar() {
     <>
       <header>
         <div className="header-content">
-          <div className="header-title">Finance Tracker</div>
-          <Link to="/" className="add-transaction-button">
+          <Link to="/" className="header-title">
+            Finance Tracker
+          </Link>
+          <Link to="add-transaction" className="add-transaction-button">
             Add Transaction
           </Link>
         </div>

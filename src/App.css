@@ -22,6 +22,8 @@ header .add-transaction-button {
 
 .header-title {
   font-size: 1.4em;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* Summary Container */
