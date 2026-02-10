@@ -1,6 +1,23 @@
 header {
-  text-align: center;
-  padding: 20px;
+  background-color: rgba(15, 23, 42, 0.85);
+}
+
+header .header-content {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  padding: 20px 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .add-transaction-button {
+  background-color: #3b82f6;
+  color: #f8fafc;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .header-title {
