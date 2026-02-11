@@ -6,8 +6,16 @@ interface Category {
   name: string;
 }
 
+interface ConfirmationMessage {
+  message: string;
+  isError: boolean;
+}
+
 function AddTransaction() {
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const [confirmationMessage, setConfirmationMessage] =
+    useState<ConfirmationMessage | null>(null);
   const [formData, setFormData] = useState({
     description: "",
     amount: "",
@@ -50,7 +58,10 @@ function AddTransaction() {
       });
 
       if (response.ok) {
-        alert("Transaction added successfully!");
+        setConfirmationMessage({
+          message: formData.description + " added successfully!",
+          isError: false,
+        });
         setFormData({
           description: "",
           amount: "",
@@ -59,11 +70,17 @@ function AddTransaction() {
           date: "",
         });
       } else {
-        alert("Failed to add transaction");
+        setConfirmationMessage({
+          message: "Error adding " + formData.description,
+          isError: true,
+        });
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error adding transaction");
+      setConfirmationMessage({
+        message: "Error adding " + formData.description,
+        isError: true,
+      });
     }
   };
 
@@ -135,6 +152,14 @@ function AddTransaction() {
         </div>
         <input type="submit" className="submit-button" value="Add" />
       </form>
+
+      <div
+        id="confirmation-message"
+        style={{ color: confirmationMessage?.isError ? "#ef4444" : "#10b981" }}
+      >
+        {confirmationMessage?.message}
+        {/* Confirmation message will be displayed here after submission */}
+      </div>
     </div>
   );
 }

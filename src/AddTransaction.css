@@ -36,3 +36,11 @@ input[type="submit"] {
     margin-top: 10px;
     color: #94a3b8;
 }
+
+#confirmation-message {
+    margin-top: 20px;
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #10b981;
+    font-weight: bold;
+}
